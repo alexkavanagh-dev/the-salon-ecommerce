@@ -44,7 +44,7 @@
           <div class="modal-body">
             <form class="d-flex" role="search" method="GET" action="">
               <input class="form-control me-2" type="search" name="q" placeholder="Enter search here..." aria-label="Search">
-              <button class="btn btn-outline-secondary" type="submit">
+              <button class="btn btn-brand" type="submit">
                 <span class="icon"><i class="fas fa-search"></i></span>
               </button>
             </form>      
@@ -57,7 +57,7 @@
     <header class="container-fluid fixed-top">
       <!-- Announcement Bar -->
       <div id="announcement-bar" class="row text-center mb-3">
-        <div class="col bg-dark text-white">
+        <div class="col bg-brand text-dark">
           <h4 class="py-1">Free delivery on orders over &euro;{{ free_shipping_threshold }}!</h4>                
         </div>            
       </div>
@@ -67,7 +67,7 @@
         <!-- Nav Search Modal Trigger -->
         <div class="col-4 my-auto">
           <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#searchModal">
-            <span class="icon"><i class="fas fa-search"></i></span>
+            <span class="icon"><i class="fas fa-search zoom-hover"></i></span>
           </button>
         </div>
 
@@ -80,8 +80,8 @@
 
         <!-- Nav Cart -->
         <div class="col-4 my-auto">
-          <a class="nav-link text-dark" href="#">
-            <div class="float-end">
+          <a class="text-dark" href="#">
+            <div class="float-end zoom-hover">
               <div><i class="fa-solid fa-cart-shopping"></i></div>
               <p class="my-0">
                 {% if grand_total %}
@@ -112,7 +112,7 @@
 
           <!-- Mobile Nav Cart -->
           <div class="my-auto d-lg-none">
-            <a class="nav-link text-dark" href="#">
+            <a class="text-dark" href="#">
               <div class="float-end">
                 <div><i class="fa-solid fa-cart-shopping"></i></div>
                 <p class="my-0">

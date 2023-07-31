@@ -12,6 +12,15 @@
 .btn-brand { background-color: var(--brand-pink);}
 .btn-brand:hover { background-color: var(--brand-dark-pink);}
 
+.zoom-hover { transition-duration: 200ms }
+.zoom-hover:hover { scale: 1.25; }
+
+/* -------------------------------- General Styling */
+
+/* -------------------------------- Nav Styling */
+
+.nav-link { border-color: white; }
+.nav-link:hover { border-bottom: 3px solid var(--brand-dark-pink); }
 
 /* -------------------------------- Media Queries */
 
