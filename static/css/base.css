@@ -19,7 +19,7 @@
 
 /* -------------------------------- Nav Styling */
 
-.nav-link { border-color: white; }
+.nav-link { border: 3px solid transparent; }
 .nav-link:hover { border-bottom: 3px solid var(--brand-dark-pink); }
 
 /* -------------------------------- Hero Image */
