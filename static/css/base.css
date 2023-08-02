@@ -28,7 +28,7 @@
   background: url('/media/hero-image.webp') no-repeat center center fixed;
   height: 70vh;
   background-size: cover;
-  background-color: #555;
+  background-color: #333;
   background-blend-mode: overlay;
 }
 
