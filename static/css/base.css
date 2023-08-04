@@ -32,6 +32,30 @@
   background-blend-mode: overlay;
 }
 
+/* -------------------------------- Product Card */
+
+.card-img-link {
+  overflow: hidden;
+}
+
+.card-img-top {
+  height: 17rem;
+  object-fit: cover;
+  transition: all .3s;
+}
+
+.card-img-top:hover {
+  transform: scale(1.1);
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline 1px #333;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Larger container on xxl screens */
