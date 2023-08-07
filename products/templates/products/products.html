@@ -12,9 +12,15 @@
       {% for product in page_obj %}
         <div id="product-card" class="col my-3 text-center">
           <div class="card h-100 bg-light">
+            {% if product.image %}
             <a href="#" class="card-img-link" aria-label="Go to product detail page">
               <img src="{{ product.image.url }}" class="card-img-top" alt="image for product thumbnail">
             </a>
+            {% else %}
+            <a href="#" class="card-img-link" aria-label="Go to product detail page">
+              <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
+            </a>
+            {% endif %}
             <div class="card-body">
               <div class="card-title">
                 <h5 class="card-text fw-bold">{{ product.brand }}</h5>
