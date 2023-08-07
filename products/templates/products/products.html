@@ -11,7 +11,7 @@
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
       {% for product in page_obj %}
         <div id="product-card" class="col my-3 text-center">
-          <div class="card h-100 bg-light">
+          <div class="card h-100">
             {% if product.image %}
             <a href="#" class="card-img-link" aria-label="Go to product detail page">
               <img src="{{ product.image.url }}" class="card-img-top" alt="image for product thumbnail">
