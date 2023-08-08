@@ -3,8 +3,10 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="container">
-  <div class="row d-flex justify-content-between mt-3">
+  <div class="row d-flex justify-content-between my-3">
     <!-- Product image -->
     <div id="product-detail-image" class="col-12 col-md-6">
       {% if product.image %}
@@ -22,6 +24,46 @@
       <p>{{ product.description }}</p>
     </div>
   </div>
+
+  <!-- Review Section -->
+
+  <!-- Reviews -->
+  <div class="row">
+    <div class="col-md-10 mx-auto mt-5">
+      <!-- Main Reviews section -->
+      <h3>Product Reviews</h3>
+      <hr>
+      <div id="reviews">
+        {% for review in reviews %}
+        <div class="review bg-light rounded p-3">
+          <p class="d-inline fw-bold card-author">{{ review.author }}</p>
+          <p class="d-inline fw-light"> wrote:</p>
+          <p >{{ review.body | linebreaks }}</p>
+        </div>
+        <hr>
+        <!-- Show message if there are no reviews yet -->
+        {% empty %}
+        <div class="review bg-light rounded p-3 mb-3">
+            <h4 class="text-center my-3 py-2 rounded bg-light">No reviews yet!</h4>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Form -->
+  {% if user.is_authenticated %}
+  <div class="row">
+    <div class="col-md-10 mx-auto my-3">
+      <h3>Leave a review:</h3>
+      <form method="post">
+          {{ review_form | crispy }}
+          {% csrf_token %}
+        <button type="submit" class="btn btn-brand mt-2 float-end" aria-label="Submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  {% endif %}
 </div>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from .models import Product
+from .models import Product, Review
+from .forms import ReviewForm
 
 
 def all_products(request):
@@ -22,8 +23,11 @@ def product_detail(request, product_id):
     """ A view to show a detailed product page """
 
     product = get_object_or_404(Product, pk=product_id)
+    reviews = product.reviews.order_by('created_on')
     template = "products/product_detail.html"
     context = {
-        "product": product
+        "product": product,
+        "reviews": reviews,
+        "review_form": ReviewForm()
     }
     return render(request, template, context)
