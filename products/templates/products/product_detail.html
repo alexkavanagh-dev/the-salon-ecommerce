@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row d-flex justify-content-between mt-3">
+    <!-- Product image -->
+    <div id="product-detail-image" class="col-12 col-md-6">
+      {% if product.image %}
+        <img class="img-fluid shadow rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% else %}
+        <img class="img-fluid shadow rounded" src="{{ MEDIA_URL }}placeholder.webp" alt="{{ product.name }}">
+      {% endif %}
+    </div>
+    <!-- Product details -->
+    <div class="col-12 col-md-5 rounded pt-3">
+      <h3 class="lead">{{ product.brand}}</h3>
+      <h2 class="fw-bold">{{ product.name }}</h2>
+      <p class="lead mb-5">&euro;{{ product.price }}</p>
+      <h4>Product Description</h4>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
