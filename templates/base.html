@@ -42,8 +42,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="d-flex" role="search" method="GET" action="">
-              <input class="form-control me-2" type="search" name="q" placeholder="Enter search here..." aria-label="Search">
+            <form class="d-flex" role="search" method="GET" action="{% url 'products' %}">
+              <input class="form-control me-2" type="search" name="q" placeholder="Enter search here..." aria-label="Search" required>
               <button class="btn btn-brand" type="submit">
                 <span class="icon"><i class="fas fa-search"></i></span>
               </button>
