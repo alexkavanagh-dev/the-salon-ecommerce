@@ -49,17 +49,27 @@
     </div>
   </div>
 
-  <!-- Previous/Next page buttons if results has more than one page -->
+  <!-- Pagination buttons -->
+  <!-- Buttons change depending on product list type to keep pagination working correctly. -->
   <ul class="pagination justify-content-center">
-    {% if page_obj.has_previous %}
-    <li>
-      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-brand m-3" aria-label="Previous page of posts">&laquo; PREV </a>
-    </li>
-    {% endif %}
-    {% if page_obj.has_next %}
-    <li>
-      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-brand m-3" aria-label="Next page of posts"> NEXT &raquo;</a>
-    </li>
+
+    <!-- Buttons for search results -->
+    {% if request_type == "search" %}
+      {% if page_obj.has_previous %}
+      <li><a href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li><a href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
+      {% endif %}
+
+    <!-- Buttons for All Products list -->
+    {% else %}
+      {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
+      {% endif %}
     {% endif %}
   </ul>
 
