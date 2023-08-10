@@ -11,6 +11,7 @@ def all_products(request):
     """
 
     products = Product.objects.all()
+    request_type = ""
 
     if request.method == "GET":
         # Search queries
@@ -28,23 +29,27 @@ def all_products(request):
                     | Q(description__icontains=query)
                     )
 
+            request_type = "search"
             page_number = request.GET.get("page")
             paginator = Paginator(query_results, 12)
             page_obj = paginator.get_page(page_number)
             template = "products/products.html"
             context = {
-                "page_obj": page_obj
+                "page_obj": page_obj,
+                "request_type": request_type
             }
             return render(request, template, context)
 
         # All products
         else:
+            request_type = "all"
             page_number = request.GET.get("page")
             paginator = Paginator(products, 12)
             page_obj = paginator.get_page(page_number)
             template = "products/products.html"
             context = {
-                "page_obj": page_obj
+                "page_obj": page_obj,
+                "request_type": request_type
             }
             return render(request, template, context)
 
