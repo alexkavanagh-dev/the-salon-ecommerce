@@ -14,9 +14,11 @@
       <h5 class="col-10 offset-1 text-center text-muted">{{ page_obj.paginator.count }} results for "{{ request.GET.q }}"</h5>
       <!-- Categories -->
       {% elif request_type == "category" %}
+        <div class="col-10 offset-1 text-center mt-3">
         {% for c in current_category %}
-        <h2 class="col-10 offset-1 text-center mt-3">{{ c.friendly_name }}</h2>
+        <h2 class="d-inline px-2">{{ c.friendly_name }}</h2>
         {% endfor %}
+        </div>
       <!-- All Products -->
       {% else %}  
       <h2 class="col-10 offset-1 text-center my-3">All Products</h2>
