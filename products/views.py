@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
-from .models import Product, Review
+from .models import Product, Review, Category
 from .forms import ReviewForm
 
 
@@ -37,6 +37,23 @@ def all_products(request):
             context = {
                 "page_obj": page_obj,
                 "request_type": request_type
+            }
+            return render(request, template, context)
+
+        # Categories
+        if 'category' in request.GET:
+            categories = request.GET["category"].split(",")
+            products = products.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
+            request_type = "category"
+            page_number = request.GET.get("page")
+            paginator = Paginator(products, 12)
+            page_obj = paginator.get_page(page_number)
+            template = "products/products.html"
+            context = {
+                "page_obj": page_obj,
+                "request_type": request_type,
+                "current_category": categories
             }
             return render(request, template, context)
 

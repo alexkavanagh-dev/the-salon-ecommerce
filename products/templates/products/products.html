@@ -6,14 +6,23 @@
 <div class="container">
   <div class="row">
     <div id="product-list" class="col-12">
+
       <!-- Change product list title depending on request type -->
+      <!-- Search -->
       {% if request_type == "search" %}
       <h2 class="col-10 offset-1 text-center mt-3">Search Results</h2>
       <h5 class="col-10 offset-1 text-center text-muted">{{ page_obj.paginator.count }} results for "{{ request.GET.q }}"</h5>
-      {% else %}
+      <!-- Categories -->
+      {% elif request_type == "category" %}
+        {% for c in current_category %}
+        <h2 class="col-10 offset-1 text-center mt-3">{{ c.friendly_name }}</h2>
+        {% endfor %}
+      <!-- All Products -->
+      {% else %}  
       <h2 class="col-10 offset-1 text-center my-3">All Products</h2>
       {% endif %}      
       <hr>
+
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
       {% for product in page_obj %}
         <div id="product-card" class="col my-3 text-center">
