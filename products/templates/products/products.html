@@ -10,8 +10,7 @@
       <!-- Change product list title depending on request type -->
       <!-- Search -->
       {% if request_type == "search" %}
-      <h2 class="col-10 offset-1 text-center mt-3">Search Results</h2>
-      <h5 class="col-10 offset-1 text-center text-muted">{{ page_obj.paginator.count }} results for "{{ request.GET.q }}"</h5>
+      <h2 class="col-10 offset-1 text-center mt-3">Search Results for "{{ request.GET.q }}"</h2>
       <!-- Categories -->
       {% elif request_type == "category" %}
         <div class="col-10 offset-1 text-center mt-3">
@@ -24,6 +23,23 @@
       <h2 class="col-10 offset-1 text-center my-3">All Products</h2>
       {% endif %}      
       <hr>
+
+      <div class="row">
+        <div class="col-12 col-md-6 mt-1 text-center text-md-start">
+          <p class="text-muted">
+            {{ page_obj.paginator.count }} Products
+          </p>
+        </div>
+        <div class="col-12 col-md-6 my-auto mx-auto d-flex justify-content-center justify-content-md-end">
+          <select id="sort-selector" class="border p-1 rounded" onchange="changeSorting()">
+            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+          </select>
+        </div>
+      </div>
 
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
       {% for product in page_obj %}
@@ -94,4 +110,36 @@
 
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    <script type="text/javascript">
+
+      function changeSorting() {
+        let selector = document.getElementById('sort-selector');
+        let currentUrl = new URL(window.location);
+
+        console.log(currentUrl);
+        console.log(selector.value);
+
+        let selectedValue = selector.value;
+        if(selectedValue != "reset"){
+
+          let sort = selectedValue.split("_")[0];
+          let direction = selectedValue.split("_")[1];
+
+          currentUrl.searchParams.set("sort", sort);
+          currentUrl.searchParams.set("direction", direction);
+
+          window.location.replace(currentUrl);
+        } else {
+          currentUrl.searchParams.delete("sort");
+          currentUrl.searchParams.delete("direction");
+
+          window.location.replace(currentUrl);
+        }
+      }
+    </script>
 {% endblock %}
