@@ -58,7 +58,7 @@
       <!-- Announcement Bar -->
       <div id="announcement-bar" class="row text-center mb-3">
         <div class="col bg-brand text-dark">
-          <h4 class="py-1">Free delivery on orders over &euro;{{ free_shipping_threshold }}!</h4>                
+          <h4 class="py-1">Free delivery on orders over &euro;{{ free_delivery_threshold }}!</h4>                
         </div>            
       </div>
 
@@ -85,9 +85,9 @@
               <div><i class="fa-solid fa-cart-shopping"></i></div>
               <p class="my-0">
                 {% if grand_total %}
-                  ${{ grand_total|floatformat:2 }}
+                  &euro;{{ total|floatformat:2 }}
                 {% else %}
-                &euro;0.00
+                  &euro;0.00
                 {% endif %}
               </p>
             </div>
