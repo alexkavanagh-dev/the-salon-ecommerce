@@ -83,28 +83,28 @@
     <!-- Buttons for search results -->
     {% if request_type == "search" %}
       {% if page_obj.has_previous %}
-      <li><a href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
+      <li><a href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}{% if current_sorting != 'None_None'%}&sort={{ request.GET.sort }}&&direction={{ request.GET.direction }}{% endif %}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
       {% endif %}
       {% if page_obj.has_next %}
-      <li><a href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
+      <li><a href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}{% if current_sorting != 'None_None'%}&sort={{ request.GET.sort }}&&direction={{ request.GET.direction }}{% endif %}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
       {% endif %}
 
-    <!-- Buttons for categories results -->
+    <!-- Buttons for category results -->
     {% elif request_type == "category" %}
       {% if page_obj.has_previous %}
-      <li><a href="?category={% for c in current_category%}{{c.name}},{% endfor %}&page={{ page_obj.previous_page_number }}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
+      <li><a href="?category={% for c in current_category%}{{c.name}},{% endfor %}&page={{ page_obj.previous_page_number }}{% if current_sorting != 'None_None'%}&sort={{ request.GET.sort }}&&direction={{ request.GET.direction }}{% endif %}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
       {% endif %}
       {% if page_obj.has_next %}
-      <li><a href="?category={% for c in current_category%}{{c.name}},{% endfor %}&page={{ page_obj.next_page_number }}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
+      <li><a href="?category={% for c in current_category%}{{c.name}},{% endfor %}&page={{ page_obj.next_page_number }}{% if current_sorting != 'None_None'%}&sort={{ request.GET.sort }}&&direction={{ request.GET.direction }}{% endif %}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
       {% endif %}
 
     <!-- Buttons for All Products list -->
     {% else %}
       {% if page_obj.has_previous %}
-      <li><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
+      <li><a href="?page={{ page_obj.previous_page_number }}{% if current_sorting != 'None_None'%}&sort={{ request.GET.sort }}&&direction={{ request.GET.direction }}{% endif %}" class="btn btn-brand m-3" aria-label="Previous page of products">&laquo; PREV </a></li>
       {% endif %}
       {% if page_obj.has_next %}
-      <li><a href="?page={{ page_obj.next_page_number }}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
+      <li><a href="?page={{ page_obj.next_page_number }}{% if current_sorting != 'None_None'%}&sort={{ request.GET.sort }}&&direction={{ request.GET.direction }}{% endif %}" class="btn btn-brand m-3" aria-label="Next page of products"> NEXT &raquo;</a></li>
       {% endif %}
     {% endif %}
   </ul>
