@@ -65,6 +65,12 @@
   text-decoration: underline 1px #333;
 }
 
+/* -------------------------------- Shopping Cart */
+
+.cart-item-image {
+  max-height: 120px;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Larger container on xxl screens */
