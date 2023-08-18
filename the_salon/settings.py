@@ -28,7 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-alexkavanag-thesaloneco-in9z5g7f1db.ws-eu102.gitpod.io',
                  '8000-alexkavanag-thesaloneco-in9z5g7f1db.ws-eu103.gitpod.io',
-                 '8000-alexkavanag-thesaloneco-in9z5g7f1db.ws-eu104.gitpod.io']
+                 '8000-alexkavanag-thesaloneco-in9z5g7f1db.ws-eu104.gitpod.io',
+                 '8000-chocolate-tyrannosaurus-hbweezs36cc.ws-eu104.gitpod.io']
 
 
 # Application definition
