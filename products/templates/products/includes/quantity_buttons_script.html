@@ -1,0 +1,23 @@
+<script type="text/javascript">
+
+    // Change quantity value
+    function changeQuantity(e, button) {
+        e.preventDefault();
+
+        let quantityField = document.getElementById("quantity-field");
+        let quantityValue = parseInt(quantityField.value);
+
+        if(event.key == "Enter") {
+            return
+        } else if(button.id == "decrement-btn" && quantityValue >= 2) {
+            quantityValue--;
+        } else if(button.id == "increment-btn" && quantityValue < 99) {
+            quantityValue++;    
+        }
+
+        checkDisableClass(quantityValue);
+
+        quantityField.value = quantityValue;
+    }
+
+</script>
