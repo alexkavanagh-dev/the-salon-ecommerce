@@ -20,4 +20,25 @@
         quantityField.value = quantityValue;
     }
 
+    // Change button class to indicate min/max quantities 
+    function checkDisableClass(quantityValue) {
+
+        let decrementBtnClassList = document.getElementById('decrement-btn').classList;
+        let incrementBtnClassList = document.getElementById('increment-btn').classList;
+
+        // Add/remove decrement button class
+        if ( quantityValue <= 1 ) {
+            decrementBtnClassList.add('btn-disabled');
+        } else {
+            decrementBtnClassList.remove('btn-disabled');
+        }
+
+        // Add/remove increment button class
+        if (quantityValue >= 99) {
+            incrementBtnClassList.add('btn-disabled');
+        } else {
+            incrementBtnClassList.remove('btn-disabled');
+        }
+    }
+
 </script>
