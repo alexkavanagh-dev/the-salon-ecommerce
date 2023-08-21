@@ -40,7 +40,7 @@
                                     {% else %}
                                         <img src="{{ MEDIA_URL }}/placeholder.webp" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
                                     {% endif %}
-                                    <p class="my-0 fw-semibold">{{ item.product.name }}</p>
+                                    <a href="{% url 'product_detail' item.product.id %}" class="link-dark my-0 fw-semibold">{{ item.product.name }}</a>
                                     <p class="my-0">&euro;{{ item.product.price }}</p>
                                 </td>
                                 <td class="py-3">
