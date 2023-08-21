@@ -46,11 +46,11 @@
         <div id="product-card" class="col my-3 text-center">
           <div class="card h-100">
             {% if product.image %}
-            <a href="#" class="card-img-link" aria-label="Go to product detail page">
+            <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
               <img src="{{ product.image.url }}" class="card-img-top" alt="image for product thumbnail">
             </a>
             {% else %}
-            <a href="#" class="card-img-link" aria-label="Go to product detail page">
+            <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
               <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
             </a>
             {% endif %}
@@ -59,7 +59,7 @@
                 <h5 class="card-text fw-bold">{{ product.brand }}</h5>
               </div>
               <div>
-                <a href="#" class="card-link text-dark">
+                <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
                   <p aria-label="Go to product detail page">{{ product.name }}</p>
                 </a>
                 <p>&euro;{{ product.price }}</p>

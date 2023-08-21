@@ -112,7 +112,7 @@
 
           <!-- Mobile Nav Cart -->
           <div class="my-auto d-lg-none">
-            <a class="text-dark" href="#">
+            <a class="text-dark" href="{% url 'view_cart' %}">
               <div class="float-end">
                 <div><i class="fa-solid fa-cart-shopping"></i></div>
                 <p class="my-0">
@@ -130,7 +130,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mx-lg-auto mb-2 w-75 d-flex justify-content-around">
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'products' %}?category=skin_care">Skin Care</a>
