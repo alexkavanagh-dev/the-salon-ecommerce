@@ -16,6 +16,10 @@ def add_to_cart(request, item_id):
 
     if item_id in list(cart.keys()):
         cart[item_id] += quantity
+
+        if cart[item_id] > 99:
+            cart[item_id] = 99
+
     else:
         cart[item_id] = quantity
 
