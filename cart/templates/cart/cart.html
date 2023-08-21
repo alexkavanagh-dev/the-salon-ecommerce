@@ -40,7 +40,7 @@
                                     <p class="my-0">&euro;{{ item.product.price }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <form class="form float-end" action="#" method="POST">
+                                    <form class="form float-end" action="{% url 'update_cart' item.product.id %}" method="POST">
                                         {% csrf_token %}
                                         <div class="form-row">
                                             <div class="form-group">
@@ -56,8 +56,8 @@
                                             </div>
                                         </div>
                                         <div class="col-12 lh-1">
-                                            <input type="submit" class="btn btn-link btn-sm p-0 mt-1" value="Update">
-                                            <a href="#" class="btn btn-link btn-sm link-danger p-0 mt-1 float-end ">Remove</a>
+                                            <a href="#" class="btn btn-link btn-sm link-danger p-0 mt-1">Remove</a>
+                                            <input type="submit" class="btn btn-link btn-sm p-0 mt-1 float-end" value="Update">
                                         </div>
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                       </form>
