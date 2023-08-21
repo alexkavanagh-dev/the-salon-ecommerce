@@ -35,12 +35,31 @@
                         {% for item in cart_items %}
                             <tr>
                                 <td class="py-3">
-                                    <img src="{{ item.product.image.url }}" alt="{{ product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
                                     <p class="my-0 fw-semibold">{{ item.product.name }}</p>
                                     <p class="my-0">&euro;{{ item.product.price }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0 text-end">{{ item.quantity }}</p>
+                                    <form class="form float-end" action="#" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="input-group quantity-selector">
+                                                <button id="decrement-btn-{{ item.product.id }}" class="input-group-text decrement-btn" type="button" data-item_id="{{ item.product.id }}" onclick="changeQuantity(event, this)">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                                <input id="quantity-field-{{ item.product.id }}" class="form-control text-center" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.product.id }}" required>
+                                                <button id="increment-btn-{{ item.product.id }}" class="input-group-text increment-btn" type="button" data-item_id="{{ item.product.id }}" onclick="changeQuantity(event, this)">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="submit" class="btn btn-link btn-sm p-0" value="Update">
+                                        </div>
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                      </form>
                                 </td>
                                 <td class="py-3">
                                     <p class="my-0 text-end">&euro;{{ item.product.price }}</p>
@@ -78,4 +97,9 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_buttons_script.html' %}
 {% endblock %}

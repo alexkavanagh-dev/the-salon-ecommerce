@@ -4,27 +4,28 @@
     function changeQuantity(e, button) {
         e.preventDefault();
 
-        let quantityField = document.getElementById("quantity-field");
+        let itemID = button.dataset.item_id;
+        let quantityField = document.getElementById("quantity-field-" + itemID);
         let quantityValue = parseInt(quantityField.value);
 
         if(event.key == "Enter") {
             return
-        } else if(button.id == "decrement-btn" && quantityValue >= 2) {
+        } else if(button.classList.contains("decrement-btn") && quantityValue >= 2) {
             quantityValue--;
-        } else if(button.id == "increment-btn" && quantityValue < 99) {
+        } else if(button.classList.contains("increment-btn") && quantityValue < 99) {
             quantityValue++;    
         }
 
-        checkDisableClass(quantityValue);
+        checkDisableClass(quantityValue, itemID);
 
         quantityField.value = quantityValue;
     }
 
     // Change button class to indicate min/max quantities 
-    function checkDisableClass(quantityValue) {
+    function checkDisableClass(quantityValue, itemID) {
 
-        let decrementBtnClassList = document.getElementById('decrement-btn').classList;
-        let incrementBtnClassList = document.getElementById('increment-btn').classList;
+        let decrementBtnClassList = document.getElementById('decrement-btn-' + itemID).classList;
+        let incrementBtnClassList = document.getElementById('increment-btn-' + itemID).classList;
 
         // Add/remove decrement button class
         if ( quantityValue <= 1 ) {
