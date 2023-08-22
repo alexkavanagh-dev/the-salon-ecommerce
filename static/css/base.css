@@ -13,6 +13,18 @@
 .btn-brand { background-color: var(--brand-pink);}
 .btn-brand:hover { background-color: var(--brand-dark-pink);}
 
+.bg-green { background-color: #6fcc80; }
+.text-green { color: #004e0e;}
+
+.bg-blue { background-color: #88d4f5;}
+.text-blue { color: #024a6b;}
+
+.bg-yellow { background-color: #fff768;}
+.text-yellow { color: #534401;}
+
+.bg-red { background-color: #fc6868;}
+.text-red { color: #5f0000;}
+
 .zoom-hover { transition-duration: 200ms }
 .zoom-hover:hover { scale: 1.25; }
 
