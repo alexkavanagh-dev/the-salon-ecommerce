@@ -23,6 +23,8 @@ def add_to_cart(request, item_id):
         if cart[item_id] > 99:
             cart[item_id] = 99
 
+        messages.success(request, f'{product.name} was updated in your cart!')
+
     else:
         cart[item_id] = quantity
         messages.success(request, f'{product.name} was added to your cart!')
@@ -34,12 +36,14 @@ def add_to_cart(request, item_id):
 def update_cart(request, item_id):
     """ Update the quantity of an item in the users shopping cart"""
 
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
     cart[item_id] = quantity
 
+    messages.success(request, f'{product.name} was updated in your cart!')
     request.session['cart'] = cart
     return redirect(redirect_url)
 
@@ -47,8 +51,10 @@ def update_cart(request, item_id):
 def remove_from_cart(request, item_id):
     """ Remove an item from the users shopping cart"""
 
+    product = get_object_or_404(Product, pk=item_id)
     cart = request.session.get('cart', {})
     cart.pop(item_id)
 
+    messages.info(request, f'{product.name} was removed from your cart!')
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
