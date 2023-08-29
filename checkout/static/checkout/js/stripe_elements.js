@@ -39,6 +39,8 @@ form.addEventListener('submit', function(event) {
 
   card.update({'disabled': true});
   document.getElementById('submit-button').setAttribute('disabled', true);
+  document.getElementById('loading-overlay').classList.remove('d-none');
+  document.getElementById('loading-spinner').classList.remove('d-none');
 
   stripe.confirmCardPayment(clientSecret, {
       payment_method: {
@@ -53,6 +55,8 @@ form.addEventListener('submit', function(event) {
               </span>
               <span>${result.error.message}</span>`;
           errorDiv.innerHTML(html);
+          document.getElementById('loading-overlay').classList.add('d-none');
+          document.getElementById('loading-spinner').classList.add('d-none');
           card.update({ 'disabled': false});
           document.getElementById('submit-button').setAttribute('disabled', false);
       } else {

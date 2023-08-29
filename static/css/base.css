@@ -99,6 +99,14 @@ input[type=number] {
   max-height: 120px;
 }
 
+/* -------------------------------- Spinner Overlay */
+
+#loading-overlay{
+  background-color: rgba(30, 30, 30, .5);
+  height: 100vh;
+  width: 100vw;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Larger container on xxl screens */
