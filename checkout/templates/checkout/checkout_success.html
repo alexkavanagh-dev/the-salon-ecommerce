@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font my-4">Thank You!</h2>
+            <hr>
+            <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-7 text-right">
+            <a href="{% url 'products' %}" class="btn btn-brand rounded my-2">
+                <span class="text-uppercase">Check out our featured products!</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Shopping cart table -->
+    <div class="row">
+        <div class="col">
+            {% if cart_items %}
+                <div class="table-responsive rounded">
+                    <table class="table table-sm table-borderless">
+                        <!-- Headings -->
+                        <thead class="text-dark">
+                            <tr>
+                                <th scope="col" class="text-muted fw-normal w-50">Product</th>
+                                <th scope="col" class="text-muted fw-normal w-25 text-end">Quantity</th>
+                                <th scope="col" class="text-muted fw-normal w-25 text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tr> 
+                            <td colspan="3"><hr class="my-1"></td>      
+                        </tr>
+
+                        <!-- Items -->
+                        {% for item in cart_items %}
+                            <tr>
+                                <td class="py-3">
+                                    {% if item.product.image %}
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
+                                    {% else %}
+                                        <img src="{{ MEDIA_URL }}/placeholder.webp" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
+                                    {% endif %}
+                                    <a href="{% url 'product_detail' item.product.id %}" class="link-dark my-0 fw-semibold">{{ item.product.name }}</a>
+                                    <p class="my-0">&euro;{{ item.product.price }}</p>
+                                </td>
+                                <td class="py-3">
+                                    <form class="form float-end" action="{% url 'update_cart' item.product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <div class="input-group quantity-selector">
+                                                <button id="decrement-btn-{{ item.product.id }}" class="input-group-text decrement-btn" type="button" data-item_id="{{ item.product.id }}" onclick="changeQuantity(event, this)">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                                <input id="quantity-field-{{ item.product.id }}" class="form-control text-center" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.product.id }}" required>
+                                                <button id="increment-btn-{{ item.product.id }}" class="input-group-text increment-btn" type="button" data-item_id="{{ item.product.id }}" onclick="changeQuantity(event, this)">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 lh-1">
+                                            <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-link btn-sm link-danger p-0 mt-1">Remove</a>
+                                            <input type="submit" class="btn btn-link btn-sm p-0 mt-1 float-end" value="Update">
+                                        </div>
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                      </form>
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0 text-end">&euro;{{ item.item_subtotal }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %} 
+                        <tr> 
+                            <td colspan="3"><hr class="my-1"></td>      
+                        </tr>                 
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
