@@ -64,6 +64,7 @@ form.addEventListener('submit', function(event) {
                   line1: form.street_address1.value.trim(),
                   line2: form.street_address2.value.trim(),
                   city: form.town_or_city.value.trim(),
+                  country: $.trim(form.country.value),
                   state: form.county.value.trim(),
               }
           }
@@ -75,6 +76,7 @@ form.addEventListener('submit', function(event) {
               line1: form.street_address1.value.trim(),
               line2: form.street_address2.value.trim(),
               city: form.town_or_city.value.trim(),
+              country: $.trim(form.country.value),
               postal_code: form.postcode.value.trim(),
               state: form.county.value.trim(),
           }
