@@ -156,6 +156,10 @@ input[type=number] {
   border: 1px solid var(--brand-dark-pink);
 }
 
+/* -------------------------------- Profiles*/
+
+.order-history{ max-height: 450px; }
+
 /* -------------------------------- Media Queries */
 
 /* Larger container on xxl screens */
