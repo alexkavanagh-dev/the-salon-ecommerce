@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.paginator import Paginator
+from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product, Review, Category
-from .forms import ReviewForm
+from .forms import ReviewForm, ProductForm
 
 
 def all_products(request):
@@ -84,3 +85,24 @@ def product_detail(request, product_id):
         "review_form": ReviewForm()
     }
     return render(request, template, context)
+
+
+def add_product(request):
+    """
+    Take information/image from admin to create a new product
+    """
+    if request.method == 'POST':
+        product_form = ProductForm(data=request.POST, files=request.FILES)
+
+        if product_form.is_valid():
+            new_product = product_form.save(commit=False)
+            new_product.save()
+            messages.success(request, 'New product was added successfully!')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request, 'Please check that the form has been '
+                                    'filled correctly.')
+    else:
+        product_form = ProductForm()
+
+    return render(request, 'products/add_product.html', {"product_form": product_form})
