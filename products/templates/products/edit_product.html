@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto my-3">
+            <h2>Product Management</h2>
+            <h5>Edit product</h5>
+            <hr>
+
+            <!-- Form for adding new product -->
+            <form class="my-3" method="POST" enctype="multipart/form-data">
+                {{ product_form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-brand mt-3 float-end" aria-label="Submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -106,3 +106,32 @@ def add_product(request):
         product_form = ProductForm()
 
     return render(request, 'products/add_product.html', {"product_form": product_form})
+
+
+def edit_product(request, product_id):
+    """
+    Take information/image from admin to edit an existing product
+    """
+    product = get_object_or_404(Product, pk=product_id)
+    product_form = ProductForm(instance=product)
+
+    if request.method == 'POST':
+        product_form = \
+            ProductForm(data=request.POST, files=request.FILES, instance=product)
+
+        if product_form.is_valid():
+            edited_product = product_form.save(commit=False)
+            edited_product.save()
+            messages.success(request, 'Product was edited successfully!')
+            return redirect(reverse('home'))
+        else:
+            messages.error(request, 'Please check that the form has been '
+                                    'filled correctly.')
+
+    template = 'products/edit_product.html'
+    context = {
+        'product_form': product_form,
+        'product': product,
+    }
+
+    return render(request, template, context)
