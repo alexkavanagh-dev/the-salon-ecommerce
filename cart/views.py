@@ -22,8 +22,9 @@ def add_to_cart(request, item_id):
 
         if cart[item_id] > 99:
             cart[item_id] = 99
-
-        messages.success(request, f'{product.name} was updated in your cart!')
+            messages.success(request, f'Max quantity (99) of {product.name} added to your cart!')
+        else:
+            messages.success(request, f'{product.name} was updated in your cart!')
 
     else:
         cart[item_id] = quantity
