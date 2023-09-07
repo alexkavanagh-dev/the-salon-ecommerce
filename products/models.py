@@ -33,10 +33,12 @@ class Product(models.Model):
 
 
 class Review(models.Model):
+    RATINGS = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
-    rating = models.IntegerField()
+    rating = models.IntegerField(choices=RATINGS, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

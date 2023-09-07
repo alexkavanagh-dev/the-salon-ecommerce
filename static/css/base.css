@@ -156,6 +156,15 @@ input[type=number] {
   border: 1px solid var(--brand-dark-pink);
 }
 
+/* -------------------------------- Review Form*/
+
+#id_rating {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+
 /* -------------------------------- Profiles*/
 
 .order-history{ max-height: 450px; }
