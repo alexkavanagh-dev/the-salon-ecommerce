@@ -63,6 +63,23 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 my-5 text-break">
+            <h4>Your Product Reviews</h4>
+            <hr class="text-muted">
+            {% for review in reviews%}
+                <div class="border rounded p-3 my-2">
+                    <p class="fs-5 fw-semibold">{{ review.product.brand }} | {{ review.product }}</p>
+                    {% if review.rating %}
+                        <p class="d-inline">{{ review.rating }} <i class="fa-solid fa-star"></i> - {{ review.body }}</p>
+                    {% else %}
+                        <p class="d-inline">No rating - {{ review.body }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}

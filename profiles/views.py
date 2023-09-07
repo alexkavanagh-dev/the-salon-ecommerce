@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
-from .models import UserProfile
+from .models import UserProfile, User
 from .forms import UserProfileForm
 from checkout.models import Order
 
@@ -9,6 +9,7 @@ from checkout.models import Order
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
+    user = get_object_or_404(User, pk=request.user.id)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -18,11 +19,13 @@ def profile(request):
 
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
+    reviews = user.reviews.all()
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'orders': orders,
+        'reviews': reviews
     }
 
     return render(request, template, context)
