@@ -76,8 +76,28 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show a detailed product page """
 
-    product = get_object_or_404(Product, pk=product_id)
-    reviews = product.reviews.order_by('created_on')
+    if request.method == "GET":
+        product = get_object_or_404(Product, pk=product_id)
+        reviews = product.reviews.order_by('created_on')
+
+    else:
+        product = get_object_or_404(Product, pk=product_id)
+        reviews = product.reviews.order_by('created_on')
+
+        review_form = ReviewForm(data=request.POST)
+
+        if review_form.is_valid():
+            review_form.instance.author = request.user
+            messages.success(request, 'Review created successfully!')
+            review = review_form.save(commit=False)
+            review.product = product
+            review.save()
+            review_form = ReviewForm()
+        else:
+            messages.error(request, 'Please check that your form has '
+                                    'been filled correctly.')
+            review_form = ReviewForm()
+
     template = "products/product_detail.html"
     context = {
         "product": product,
