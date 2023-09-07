@@ -98,11 +98,24 @@ def product_detail(request, product_id):
                                     'been filled correctly.')
             review_form = ReviewForm()
 
+    ratings_total = 0
+    reviews_total = 0
+    review_avg = 0
+
+    for review in reviews:
+        if review.rating is not None:
+            ratings_total += review.rating
+            reviews_total += 1
+
+    if ratings_total and reviews_total:
+        review_avg = ratings_total/reviews_total
+
     template = "products/product_detail.html"
     context = {
         "product": product,
         "reviews": reviews,
-        "review_form": ReviewForm()
+        "review_form": ReviewForm(),
+        "review_avg": review_avg
     }
     return render(request, template, context)
 

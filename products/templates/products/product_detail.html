@@ -20,6 +20,11 @@
     <div class="col-12 col-md-5 rounded pt-3">
       <h3 class="lead">{{ product.brand}}</h3>
       <h2 class="fw-bold">{{ product.name }}</h2>
+      {% if review_avg %}
+        <p>{{ review_avg | floatformat:1 }} <i class="fa-solid fa-star"></i></p></p>
+      {% else %} 
+        <p>No reviews</p>
+      {% endif %}
       <p class="lead mb-3">&euro;{{ product.price }}</p>
 
       {% if user.is_superuser %}
