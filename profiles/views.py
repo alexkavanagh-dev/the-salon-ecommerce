@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+
 
 from .models import UserProfile, User, WishList
 from .forms import UserProfileForm
@@ -49,3 +51,20 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
+
+def wishlist_product(request, product_id):
+
+    user = get_object_or_404(User, pk=request.user.id)
+    product = get_object_or_404(Product, pk=product_id)
+
+    if WishList.objects.filter(user=user).filter(product=product).exists():
+        WishList.objects.filter(user=user).filter(product=product).delete()
+        messages.success(request, ('Item removed from wishlist!'))
+    else:
+        WishList.objects.create(product=product,
+                                user=user,
+                                )
+        messages.success(request, ('Item added to wishlist!'))
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

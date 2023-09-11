@@ -18,7 +18,12 @@
     
     <!-- Product details and add to cart form-->
     <div class="col-12 col-md-5 rounded pt-3">
-      <h3 class="lead">{{ product.brand}}</h3>
+      {% if wished %}
+        <a class="btn btn-sm btn-outline-danger mb-2" href="{% url 'wishlist_product' product.id %}" aria-label="Add to wishlist"><i class="fa-solid fa-heart"></i></a>
+      {% else %}
+        <a class="btn btn-sm btn-outline-danger mb-2" href="{% url 'wishlist_product' product.id %}" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></a>
+      {% endif %}
+      <h3 class="lead">{{ product.brand }}</h3>
       <h2 class="fw-bold">{{ product.name }}</h2>
       {% if review_avg %}
         <p>{{ review_avg | floatformat:1 }} <i class="fa-solid fa-star"></i></p></p>

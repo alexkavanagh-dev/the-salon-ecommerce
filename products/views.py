@@ -80,6 +80,10 @@ def product_detail(request, product_id):
         product = get_object_or_404(Product, pk=product_id)
         reviews = product.reviews.order_by('created_on')
 
+        wished = False
+        if product.wishlist.filter(user=request.user.id).exists():
+            wished = True
+
     else:
         product = get_object_or_404(Product, pk=product_id)
         reviews = product.reviews.order_by('created_on')
@@ -115,7 +119,8 @@ def product_detail(request, product_id):
         "product": product,
         "reviews": reviews,
         "review_form": ReviewForm(),
-        "review_avg": review_avg
+        "review_avg": review_avg,
+        "wished": wished
     }
     return render(request, template, context)
 
