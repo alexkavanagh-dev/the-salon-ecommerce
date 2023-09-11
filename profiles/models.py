@@ -5,6 +5,8 @@ from django.dispatch import receiver
 
 from django_countries.fields import CountryField
 
+from products.models import Product
+
 
 class UserProfile(models.Model):
     """
@@ -19,6 +21,18 @@ class UserProfile(models.Model):
     default_county = models.CharField(max_length=80, null=True, blank=True)
     default_postcode = models.CharField(max_length=20, null=True, blank=True)
     default_country = CountryField(blank_label='Country', null=True, blank=True, default="Ireland")
+
+    def __str__(self):
+        return self.user.username
+
+
+class WishList(models.Model):
+    """
+    A wishlist model for users to keep
+    a list of favourite/wanted items
+    """
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='wishlist')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wishlist')
 
     def __str__(self):
         return self.user.username

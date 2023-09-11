@@ -68,7 +68,7 @@
         <div class="col-12 col-md-6 my-5 text-break">
             <h4>Your Product Reviews</h4>
             <hr class="text-muted">
-            {% for review in reviews%}
+            {% for review in reviews %}
                 <div class="border rounded p-3 my-2">
                     <p class="fs-5 fw-semibold">{{ review.product.brand }} | {{ review.product }}</p>
                     {% if review.rating %}
@@ -78,6 +78,30 @@
                     {% endif %}
                 </div>
             {% endfor %}
+        </div>
+        <div class="col-12 col-md-6 my-5">
+            <h4>Your Wishlist</h4>
+            <hr class="text-muted">
+            <div class="table-responsive rounded">
+                <table class="table table-sm table-borderless">
+                    {% for item in wishlist %}
+                        <tr>
+                            <td class="py-3">
+                                {% if item.product.image %}
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }} image" class="w-25 rounded border float-start me-2 cart-item-image">
+                                {% else %}
+                                    <img src="{{ MEDIA_URL }}/placeholder.webp" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
+                                {% endif %}
+                                <a href="{% url 'product_detail' item.product.id %}" class="link-dark my-0 fw-semibold">{{ item.product.name }}</a>
+                                <p class="my-0">&euro;{{ item.product.price }}</p>
+                            </td>
+                        </tr>
+                        <tr> 
+                            <td colspan="3"><hr class="my-1"></td>      
+                        </tr>              
+                    {% endfor %} 
+                </table>
+            </div>
         </div>
     </div>
 </div>

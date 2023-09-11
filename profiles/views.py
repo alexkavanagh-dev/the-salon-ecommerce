@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
-from .models import UserProfile, User
+from .models import UserProfile, User, WishList
 from .forms import UserProfileForm
 from checkout.models import Order
+from products.models import Product
 
 
 def profile(request):
@@ -20,12 +21,14 @@ def profile(request):
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
     reviews = user.reviews.all()
+    wishlist = user.wishlist.all()
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'orders': orders,
-        'reviews': reviews
+        'reviews': reviews,
+        'wishlist': wishlist
     }
 
     return render(request, template, context)
