@@ -60,11 +60,11 @@ def wishlist_product(request, product_id):
 
     if WishList.objects.filter(user=user).filter(product=product).exists():
         WishList.objects.filter(user=user).filter(product=product).delete()
-        messages.success(request, ('Item removed from wishlist!'))
+        messages.success(request, (f'{product.name} removed from wishlist!'))
     else:
         WishList.objects.create(product=product,
                                 user=user,
                                 )
-        messages.success(request, ('Item added to wishlist!'))
+        messages.success(request, (f'{product.name} added to wishlist!'))
 
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
