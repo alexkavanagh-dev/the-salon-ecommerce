@@ -47,15 +47,13 @@
       {% for product in page_obj %}
         <div id="product-card" class="col my-3 text-center">
           <div class="card h-100">
-            {% if product.image %}
             <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
-              <img src="{{ product.image.url }}" class="card-img-top" alt="image for product thumbnail">
+              {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="image for product thumbnail">
+              {% else %}
+                <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
+              {% endif %}
             </a>
-            {% else %}
-            <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
-              <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
-            </a>
-            {% endif %}
             <div class="card-body">
               <div class="card-title">
                 <h5 class="card-text fw-bold">{{ product.brand }}</h5>
@@ -64,7 +62,11 @@
                 <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
                   <p aria-label="Go to product detail page">{{ product.name }}</p>
                 </a>
-                <p>&euro;{{ product.price }}</p>
+                {% if product.available %}
+                  <p>&euro;{{ product.price }}</p>
+                {% else %}
+                  <p>Out of Stock</p>
+                {% endif %}
               </div>
             </div>
           </div>

@@ -78,9 +78,16 @@
             </div>
           </div>
         </div>
+        {% if product.available %}
         <div class="col-12">
-            <input type="submit" class="btn btn-brand rounded text-uppercase w-100 my-3" value="Add to Cart">
+          <input type="submit" class="btn btn-brand rounded text-uppercase w-100 my-3" value="Add to Cart">
         </div>
+        {% else %}
+        <div class="col-12">
+          <p class="btn btn-brand rounded text-uppercase w-100 my-3">Out of Stock</p>
+        </div>
+        {% endif %}
+        
         <input type="hidden" name="redirect_url" value="{{ request.path }}">
       </form>
       <hr>
