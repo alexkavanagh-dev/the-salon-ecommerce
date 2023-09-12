@@ -53,6 +53,9 @@
               {% else %}
                 <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
               {% endif %}
+              {% if not product.available %}
+                <span class="badge bg-info bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Out of Stock</span>
+              {% endif %}
             </a>
             <div class="card-body">
               <div class="card-title">
