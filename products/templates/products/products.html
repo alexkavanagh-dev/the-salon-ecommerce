@@ -53,7 +53,11 @@
               {% else %}
                 <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
               {% endif %}
-              {% if not product.available %}
+              {% if product.available %}
+                {% if product.sale_price %}
+                  <span class="badge bg-brand bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Sale!</span>
+                {% endif %}
+              {% else %}
                 <span class="badge bg-info bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Out of Stock</span>
               {% endif %}
             </a>
@@ -63,12 +67,19 @@
               </div>
               <div>
                 <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
-                  <p aria-label="Go to product detail page">{{ product.name }}</p>
+                  <p class="pb-4" aria-label="Go to product detail page">{{ product.name }}</p>
                 </a>
                 {% if product.available %}
-                  <p>&euro;{{ product.price }}</p>
+                  {% if product.sale_price %}
+                  <p class="position-absolute bottom-0 start-50 translate-middle-x">
+                    <span class="text-decoration-line-through text-muted me-2">&euro;{{ product.price }}</span>
+                    <span>&euro;{{ product.sale_price }}</span>
+                  </p>
+                  {% else %}
+                    <p class="position-absolute bottom-0 start-50 translate-middle-x">&euro;{{ product.price }}</p>
+                  {% endif %}
                 {% else %}
-                  <p>Out of Stock</p>
+                  <p class="position-absolute bottom-0 start-50 translate-middle-x">Out of Stock</p>
                 {% endif %}
               </div>
             </div>
