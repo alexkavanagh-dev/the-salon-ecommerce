@@ -15,15 +15,27 @@ def cart_contents(request):
     for item_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=item_id)
         if product.available:
-            total += quantity * product.price
-            product_count += quantity
-            item_subtotal = quantity * product.price
-            cart_items.append({
-                'item_id': item_id,
-                'quantity': quantity,
-                'product': product,
-                'item_subtotal': item_subtotal,
-            })
+            if product.sale_price:
+                total += quantity * product.sale_price
+                product_count += quantity
+                item_subtotal = quantity * product.sale_price
+                cart_items.append({
+                    'item_id': item_id,
+                    'quantity': quantity,
+                    'product': product,
+                    'item_subtotal': item_subtotal,
+                })
+            else:
+                total += quantity * product.price
+                product_count += quantity
+                item_subtotal = quantity * product.price
+                cart_items.append({
+                    'item_id': item_id,
+                    'quantity': quantity,
+                    'product': product,
+                    'item_subtotal': item_subtotal,
+                })
+
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = Decimal(settings.STANDARD_DELIVERY)
