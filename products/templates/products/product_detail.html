@@ -30,7 +30,15 @@
       {% else %} 
         <p>No reviews</p>
       {% endif %}
-      <p class="lead mb-3">&euro;{{ product.price }}</p>
+      {% if product.sale_price %}
+      <p>
+        <span class="badge bg-brand bg-gradient text-dark me-2 p-2">Sale!</span>
+        <span class="text-decoration-line-through text-muted me-2">&euro;{{ product.price }}</span>
+        <span>&euro;{{ product.sale_price }}</span>
+      </p>
+      {% else %}
+        <p>&euro;{{ product.price }}</p>
+      {% endif %}
 
       {% if user.is_superuser %}
       <!-- Edit Button -->
