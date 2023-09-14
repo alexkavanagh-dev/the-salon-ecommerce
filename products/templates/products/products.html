@@ -55,10 +55,13 @@
               {% endif %}
               {% if product.available %}
                 {% if product.sale_price %}
-                  <span class="badge bg-brand bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Sale!</span>
+                  <span class="badge rounded-pill bg-brand bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Sale!</span>
                 {% endif %}
               {% else %}
-                <span class="badge bg-info bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Out of Stock</span>
+                <span class="badge rounded-pill bg-info bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Out of Stock</span>
+              {% endif %}
+              {% if product.cruelty_free %}
+              <span class="badge rounded-pill bg-secondary bg-gradient position-absolute end-0 top-0 m-2 p-2"><i class="fa-solid fa-paw"></i></span>
               {% endif %}
             </a>
             <div class="card-body">

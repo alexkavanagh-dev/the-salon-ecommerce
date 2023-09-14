@@ -100,7 +100,10 @@
       </form>
       <hr>
 
-      <h4>Product Description</h4>
+      <h4 class="mb-3">Product Description</h4>
+      {% if product.cruelty_free %}
+        <p><span class="badge rounded-pill bg-green bg-gradient text-dark p-2"><i class="fa-solid fa-paw"></i></span> Cruelty Free!</p>
+      {% endif %}
       <p>{{ product.description }}</p>
     </div>
   </div>
