@@ -41,7 +41,14 @@
                                         <img src="{{ MEDIA_URL }}/placeholder.webp" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
                                     {% endif %}
                                     <a href="{% url 'product_detail' item.product.id %}" class="link-dark my-0 fw-semibold">{{ item.product.name }}</a>
-                                    <p class="my-0">&euro;{{ item.product.price }}</p>
+                                    {% if item.product.sale_price %}
+                                    <p>
+                                        <span class="text-decoration-line-through text-muted me-2">&euro;{{ item.product.price }}</span>
+                                        <span>&euro;{{ item.product.sale_price }}</span>
+                                      </p>
+                                    {% else %}
+                                        <p class="my-0">&euro;{{ item.product.price }}</p>
+                                    {% endif %}
                                 </td>
                                 <td class="py-3">
                                     <form class="form float-end" action="{% url 'update_cart' item.product.id %}" method="POST">
