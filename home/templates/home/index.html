@@ -57,6 +57,43 @@
   </div>
 </div>
 
+<!-- Cruelty Free Products -->
+<div class="container mb-3">
+  <h2 class="col-10 offset-1 text-center my-4">Cruelty Free Products!</h2>
+  <hr class="text-muted">
+  <div id="cf-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+    {% for product in cf_products %}
+      <div id="product-card" class="col my-3 text-center">
+        <div class="card h-100">
+          {% if product.image %}
+          <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="image for product thumbnail">
+          </a>
+          {% else %}
+          <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
+            <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
+          </a>
+          {% endif %}
+          {% if product.cruelty_free %}
+            <span class="badge rounded-pill bg-secondary bg-gradient position-absolute end-0 top-0 m-2 p-2"><i class="fa-solid fa-paw"></i></span>
+            {% endif %}
+          <div class="card-body">
+            <div class="card-title">
+              <h5 class="card-text fw-bold">{{ product.brand }}</h5>
+            </div>
+            <div>
+              <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
+                <p aria-label="Go to product detail page">{{ product.name }}</p>
+              </a>
+              <p>&euro;{{ product.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
 <!-- Footer -->
 <div class="row bg-brand bg-gradient py-4 text-center px-5">
 
