@@ -14,12 +14,11 @@
 </div>
 
 <!-- Featured Products -->
-<div class="container">
-  <h2 class="col-10 offset-1 text-center my-4">Featured Products from Olaplex!</h2>
-  <hr class="text-muted">
+<div class="container py-5">
+  <h2>Featured Products from Olaplex!</h2>
   <div id="feat-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
     {% for product in feat_products %}
-      <div id="product-card" class="col my-3 text-center">
+      <div id="product-card" class="col my-2 text-center">
         <div class="card h-100">
           {% if product.image %}
           <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
@@ -45,10 +44,13 @@
       </div>
     {% endfor %}
   </div>
+  <div class="text-center">
+    <a href="{% url 'products' %}?q=Olaplex" class="btn btn-lg btn-brand mt-3">Shop all Olaplex</a>
+  </div>
 </div>
 
 <!-- Mission Statement -->
-<div class="row bg-brand bg-gradient py-5 my-4 text-center">
+<div class="row bg-brand bg-gradient py-4 my-5 text-center">
   <div class="col-12">
     <div class="container">
       <h2 class="fst-italic">"Our goal at The Salon is to help you bring home that great salon feeling hair back home by offering products from our favourite brands that we use ourselves!"<br>
@@ -58,12 +60,11 @@
 </div>
 
 <!-- Cruelty Free Products -->
-<div class="container mb-3">
-  <h2 class="col-10 offset-1 text-center my-4">Cruelty Free Products!</h2>
-  <hr class="text-muted">
+<div class="container py-5">
+  <h2 class="col">Cruelty Free Products!</h2>
   <div id="cf-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
     {% for product in cf_products %}
-      <div id="product-card" class="col my-3 text-center">
+      <div id="product-card" class="col my-2 text-center">
         <div class="card h-100">
           {% if product.image %}
           <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
@@ -92,6 +93,9 @@
       </div>
     {% endfor %}
   </div>
+  <div class="text-center">
+    <a href="{% url 'products' %}?q=Cruelty+Free" class="btn btn-lg btn-brand mt-3">Shop all Cruelty Free</a>
+  </div>
 </div>
 
 <!-- Selling Points -->
@@ -116,7 +120,7 @@
 </div>
 
 <!-- Featured Brands -->
-<div class="container my-5">
+<div class="container py-5 my-5">
   <div id="featured-brands" class="row row-cols-2 row-cols-lg-4 g-3">
     <div class="col">
       <a href="{% url 'products' %}?q=Aveda" class="d-flex justify-content-around align-items-center border border-2 rounded h-100">    

@@ -43,7 +43,10 @@ def all_products(request):
 
             if query.isspace():
                 products = []
-
+            elif query.lower() == "cruelty free":
+                products = products.filter(
+                    Q(cruelty_free=True)
+                    )
             else:
                 products = products.filter(
                     Q(name__icontains=query)
