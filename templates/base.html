@@ -197,6 +197,53 @@
     {% block content %}
     {% endblock %}
 
+    <!-- Footer -->
+    <div class="row bg-brand bg-gradient py-4 text-center px-5">
+
+      <!-- Menu -->
+      <div class="mb-5 mb-lg-0 col-12 col-lg-4">
+        <h4>Menu</h4>
+        <ul class="navbar-nav mb-2">
+          <li class="nav-item my-2">
+            <a class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item my-2">
+            <a class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'products' %}?category=skin_care">Skin Care</a>
+          </li>
+          <li class="nav-item my-2">
+            <a class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'products' %}?category=hair_care">Hair Care</a>
+          </li>
+          <li class="nav-item my-2">
+            <a class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{% url 'products' %}?category=hair_accessories">Hair Accessories</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+              <span class="icon"><i class="fas fa-search"></i></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Address -->
+      <div class="mb-5 mb-lg-0 col-12 col-lg-4">
+        <h4>Our Store</h4>
+        <p class="my-3">Ballycasey Crescent, Ballycasey More</p>
+        <p class="my-3">Shannon, Co. Clare</p>
+        <p class="my-3"><span class="fw-semibold">Phone:</span> (061) 708 711</p>
+        <p class="my-3"><span class="fw-semibold">Mon - Sun:</span> 9 a.m. - 5 p.m.</p>
+      </div>
+
+      <!-- Newsletter signup -->
+      <div class="mb-5 mb-lg-0 col-12 col-lg-4">
+        <h4>Newsletter</h4>
+        <p class="my-3 lead">Join our email list for exclusive offers and the latest news.</p>
+        <form>
+          <input type="email" class="form-control mb-3" id="newsletterEmail" aria-describedby="emailHelp" placeholder="Email Address">
+          <button type="submit" class="btn btn-dark">Subscribe!</button>
+        </form>
+      </div>
+    </div>
+
     {% block postloadjs %}
       <script type="text/javascript">
         const toastLive = document.getElementById('liveToast')
