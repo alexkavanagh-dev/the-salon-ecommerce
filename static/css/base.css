@@ -26,7 +26,7 @@
 .text-red { color: #5f0000;}
 
 .zoom-hover { transition-duration: 200ms }
-.zoom-hover:hover { scale: 1.25; }
+.zoom-hover:hover { scale: 1.15; }
 
 .btn-disabled { opacity: 50%; }
 
