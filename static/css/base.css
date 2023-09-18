@@ -93,6 +93,12 @@ input[type=number] {
   text-decoration: underline 1px #333;
 }
 
+/* -------------------------------- Selling Points */
+
+#selling-point i{
+  border-bottom: 3px solid var(--brand-pink);
+}
+
 /* -------------------------------- Shopping Cart */
 
 .cart-item-image {
@@ -190,5 +196,10 @@ input[type=number] {
   /* Resize logo */
   .nav-logo img {
     height: 50px;
+  }
+
+  /* Remove border from selling points */
+  #selling-point {
+    border: none !important;
   }
 }
