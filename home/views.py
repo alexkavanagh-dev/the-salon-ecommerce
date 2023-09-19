@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from products.models import Product
+from home.models import FAQ
 
 # Create your views here.
 
@@ -21,3 +22,15 @@ def index(request):
     }
 
     return render(request, 'home/index.html', context)
+
+
+def frequently_asked_questions(request):
+    """ A view to show questions/answers from the FAQ model """
+
+    questions = FAQ.objects.all()
+
+    context = {
+        'questions': questions,
+    }
+
+    return render(request, 'home/FAQ.html', context)

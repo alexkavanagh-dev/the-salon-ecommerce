@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mb-5">
+    <h2 class="my-3">Frequently Asked Questions</h2>
+    <hr class="text-muted">
+    <div class="accordion" id="accordionFAQ">
+        {% for q in questions %}
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                    {{q.question}}
+                </button>
+            </h2>
+            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    {{ q.answer }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
