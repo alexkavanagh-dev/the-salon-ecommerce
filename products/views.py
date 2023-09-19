@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.contrib.auth.decorators import login_required
 from .models import Product, Review, Category
 from .forms import ReviewForm, ProductForm
 
@@ -128,63 +129,81 @@ def product_detail(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def add_product(request):
     """
     Take information/image from admin to create a new product
     """
-    if request.method == 'POST':
-        product_form = ProductForm(data=request.POST, files=request.FILES)
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            product_form = ProductForm(data=request.POST, files=request.FILES)
 
-        if product_form.is_valid():
-            new_product = product_form.save(commit=False)
-            new_product.save()
-            messages.success(request, 'New product was added successfully!')
-            return redirect(reverse('add_product'))
+            if product_form.is_valid():
+                new_product = product_form.save(commit=False)
+                new_product.save()
+                messages.success(request, 'New product was added successfully!')
+                return redirect(reverse('add_product'))
+            else:
+                messages.error(request, 'Please check that the form has been '
+                                        'filled correctly.')
         else:
-            messages.error(request, 'Please check that the form has been '
-                                    'filled correctly.')
+            product_form = ProductForm()
+
+        return render(request, 'products/add_product.html', {"product_form": product_form})
     else:
-        product_form = ProductForm()
+        messages.error(request, 'Sorry, you do not have permission to perform '
+                                'that action.')
+        return redirect(reverse('home'))
 
-    return render(request, 'products/add_product.html', {"product_form": product_form})
 
-
+@login_required
 def edit_product(request, product_id):
     """
     Take information/image from admin to edit an existing product
     """
-    product = get_object_or_404(Product, pk=product_id)
-    product_form = ProductForm(instance=product)
+    if request.user.is_superuser:
+        product = get_object_or_404(Product, pk=product_id)
+        product_form = ProductForm(instance=product)
 
-    if request.method == 'POST':
-        product_form = \
-            ProductForm(data=request.POST, files=request.FILES, instance=product)
+        if request.method == 'POST':
+            product_form = \
+                ProductForm(data=request.POST, files=request.FILES, instance=product)
 
-        if product_form.is_valid():
-            edited_product = product_form.save(commit=False)
-            edited_product.save()
-            messages.success(request, 'Product was edited successfully!')
-            return redirect(reverse('home'))
-        else:
-            messages.error(request, 'Please check that the form has been '
-                                    'filled correctly.')
+            if product_form.is_valid():
+                edited_product = product_form.save(commit=False)
+                edited_product.save()
+                messages.success(request, 'Product was edited successfully!')
+                return redirect(reverse('home'))
+            else:
+                messages.error(request, 'Please check that the form has been '
+                                        'filled correctly.')
 
-    template = 'products/edit_product.html'
-    context = {
-        'product_form': product_form,
-        'product': product,
-    }
+        template = 'products/edit_product.html'
+        context = {
+            'product_form': product_form,
+            'product': product,
+        }
 
-    return render(request, template, context)
+        return render(request, template, context)
+    else:
+        messages.error(request, 'Sorry, you do not have permission to perform '
+                                'that action.')
+        return redirect(reverse('home'))
 
 
+@login_required
 def delete_product(request, product_id):
     """
     Delete the selected product from the database
     """
-    product = get_object_or_404(Product, pk=product_id)
+    if request.user.is_superuser:
+        product = get_object_or_404(Product, pk=product_id)
 
-    product.delete()
-    messages.success(request, 'Product was deleted successfully!')
+        product.delete()
+        messages.success(request, 'Product was deleted successfully!')
 
-    return redirect(reverse('home'))
+        return redirect(reverse('home'))
+    else:
+        messages.error(request, 'Sorry, you do not have permission to perform '
+                                'that action.')
+        return redirect(reverse('home'))

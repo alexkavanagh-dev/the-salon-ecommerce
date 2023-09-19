@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 
 from .models import UserProfile, User, WishList
@@ -9,6 +10,7 @@ from checkout.models import Order
 from products.models import Product
 
 
+@login_required
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -56,6 +58,7 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 
+@login_required
 def wishlist_product(request, product_id):
 
     user = get_object_or_404(User, pk=request.user.id)
