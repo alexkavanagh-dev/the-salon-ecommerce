@@ -49,9 +49,9 @@
           <div class="card h-100">
             <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
               {% if product.image %}
-                <img src="{{ product.image.url }}" class="card-img-top" alt="image for product thumbnail">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="image for {{ product.name }}">
               {% else %}
-                <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for product thumbnail">
+                <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
               {% endif %}
               {% if product.available %}
                 {% if product.sale_price %}
