@@ -18,30 +18,49 @@
   <h2>Featured Products from Olaplex!</h2>
   <div id="feat-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
     {% for product in feat_products %}
-      <div id="product-card" class="col my-2 text-center">
-        <div class="card h-100">
+    <div id="product-card" class="col my-3 text-center">
+      <div class="card h-100">
+        <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
           {% if product.image %}
-          <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
             <img src="{{ product.image.url }}" class="card-img-top" alt="image for {{ product.name }}">
-          </a>
           {% else %}
-          <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
-            <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="placeholder image for product thumbnail">
-          </a>
+            <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
           {% endif %}
-          <div class="card-body">
-            <div class="card-title">
-              <h5 class="card-text fw-bold">{{ product.brand }}</h5>
-            </div>
-            <div>
-              <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
-                <p aria-label="Go to product detail page">{{ product.name }}</p>
-              </a>
-              <p>&euro;{{ product.price }}</p>
-            </div>
+          {% if product.available %}
+            {% if product.sale_price %}
+              <span class="badge rounded-pill bg-brand bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Sale!</span>
+            {% endif %}
+          {% else %}
+            <span class="badge rounded-pill bg-info bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Out of Stock</span>
+          {% endif %}
+          {% if product.cruelty_free %}
+          <span class="badge rounded-pill bg-secondary bg-gradient position-absolute end-0 top-0 m-2 p-2"><i class="fa-solid fa-paw"></i></span>
+          {% endif %}
+        </a>
+        <div class="card-body">
+          <div class="card-title">
+            <h5 class="card-text fw-bold">{{ product.brand }}</h5>
+          </div>
+          <div>
+            <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
+              <p class="pb-4" aria-label="Go to product detail page">{{ product.name }}</p>
+            </a>
+            {% if product.available %}
+              {% if product.sale_price %}
+              <p class="position-absolute bottom-0 start-50 translate-middle-x">
+                <span class="text-decoration-line-through text-muted me-2">&euro;{{ product.price }}</span>
+                <span>&euro;{{ product.sale_price }}</span>
+              </p>
+              {% else %}
+                <p class="position-absolute bottom-0 start-50 translate-middle-x">&euro;{{ product.price }}</p>
+              {% endif %}
+            {% else %}
+              <p class="position-absolute bottom-0 start-50 translate-middle-x">Out of Stock</p>
+            {% endif %}
           </div>
         </div>
       </div>
+    </div>
     {% endfor %}
   </div>
   <div class="text-center">
@@ -64,33 +83,49 @@
   <h2 class="col">Cruelty Free Products!</h2>
   <div id="cf-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
     {% for product in cf_products %}
-      <div id="product-card" class="col my-2 text-center">
-        <div class="card h-100">
+    <div id="product-card" class="col my-3 text-center">
+      <div class="card h-100">
+        <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
           {% if product.image %}
-          <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
             <img src="{{ product.image.url }}" class="card-img-top" alt="image for {{ product.name }}">
-          </a>
           {% else %}
-          <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
             <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
-          </a>
+          {% endif %}
+          {% if product.available %}
+            {% if product.sale_price %}
+              <span class="badge rounded-pill bg-brand bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Sale!</span>
+            {% endif %}
+          {% else %}
+            <span class="badge rounded-pill bg-info bg-gradient position-absolute text-dark start-0 top-0 m-2 p-2">Out of Stock</span>
           {% endif %}
           {% if product.cruelty_free %}
-            <span class="badge rounded-pill bg-secondary bg-gradient position-absolute end-0 top-0 m-2 p-2"><i class="fa-solid fa-paw"></i></span>
+          <span class="badge rounded-pill bg-secondary bg-gradient position-absolute end-0 top-0 m-2 p-2"><i class="fa-solid fa-paw"></i></span>
+          {% endif %}
+        </a>
+        <div class="card-body">
+          <div class="card-title">
+            <h5 class="card-text fw-bold">{{ product.brand }}</h5>
+          </div>
+          <div>
+            <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
+              <p class="pb-4" aria-label="Go to product detail page">{{ product.name }}</p>
+            </a>
+            {% if product.available %}
+              {% if product.sale_price %}
+              <p class="position-absolute bottom-0 start-50 translate-middle-x">
+                <span class="text-decoration-line-through text-muted me-2">&euro;{{ product.price }}</span>
+                <span>&euro;{{ product.sale_price }}</span>
+              </p>
+              {% else %}
+                <p class="position-absolute bottom-0 start-50 translate-middle-x">&euro;{{ product.price }}</p>
+              {% endif %}
+            {% else %}
+              <p class="position-absolute bottom-0 start-50 translate-middle-x">Out of Stock</p>
             {% endif %}
-          <div class="card-body">
-            <div class="card-title">
-              <h5 class="card-text fw-bold">{{ product.brand }}</h5>
-            </div>
-            <div>
-              <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
-                <p aria-label="Go to product detail page">{{ product.name }}</p>
-              </a>
-              <p>&euro;{{ product.price }}</p>
-            </div>
           </div>
         </div>
       </div>
+    </div>
     {% endfor %}
   </div>
   <div class="text-center">
