@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}
+  {% if request_type == "search" %}
+    | Search Results
+  {% elif request_type == "category" %}
+    {% for c in current_category %}
+      | {{ c.friendly_name }}
+    {% endfor %}
+  {% else %}  
+    | All Products
+  {% endif %}  
+{% endblock %}
+
 {% block content %}
+
 
 <div class="container">
   <div class="row">
