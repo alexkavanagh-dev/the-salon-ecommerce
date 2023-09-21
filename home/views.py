@@ -34,3 +34,9 @@ def frequently_asked_questions(request):
     }
 
     return render(request, 'home/FAQ.html', context)
+
+
+def privacy_policy(request):
+    """ A view to show the websites privacy policy """
+
+    return render(request, 'home/privacy.html')
