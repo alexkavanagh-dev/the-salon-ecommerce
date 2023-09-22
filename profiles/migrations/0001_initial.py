@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('default_street_address1', models.CharField(blank=True, max_length=80, null=True)),
                 ('default_street_address2', models.CharField(blank=True, max_length=80, null=True)),
                 ('default_county', models.CharField(blank=True, max_length=80, null=True)),
-                ('default_country', django_countries.fields.CountryField(blank=True, default='Ireland', max_length=2, null=True)),
+                ('default_country', django_countries.fields.CountryField(blank=True, default='Ireland', max_length=10, null=True)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

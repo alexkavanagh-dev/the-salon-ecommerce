@@ -7,13 +7,13 @@ import django_countries.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('checkout', '0004_order_user_profile'),
+        ('profiles', '0002_wishlist'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='order',
-            name='country',
-            field=django_countries.fields.CountryField(default='IE', max_length=10),
+            model_name='userprofile',
+            name='default_country',
+            field=django_countries.fields.CountryField(blank=True, default='IE', max_length=10, null=True),
         ),
     ]
