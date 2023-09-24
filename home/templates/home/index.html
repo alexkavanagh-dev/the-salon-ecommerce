@@ -28,7 +28,7 @@
           {% if product.image %}
             <img src="{{ product.image.url }}" class="card-img-top" alt="image for {{ product.name }}">
           {% else %}
-            <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
+            <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
           {% endif %}
           {% if product.available %}
             {% if product.sale_price %}
@@ -93,7 +93,7 @@
           {% if product.image %}
             <img src="{{ product.image.url }}" class="card-img-top" alt="image for {{ product.name }}">
           {% else %}
-            <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
+            <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
           {% endif %}
           {% if product.available %}
             {% if product.sale_price %}
@@ -163,22 +163,22 @@
   <div id="featured-brands" class="row row-cols-2 row-cols-lg-4 g-3">
     <div class="col">
       <a href="{% url 'products' %}?q=Aveda" class="d-flex justify-content-around align-items-center border border-2 rounded h-100">    
-        <img src="{{MEDIA_URL}}/aveda-logo.png" class="img-fluid p-3 p-md-5 zoom-hover" alt="aveda brand logo">
+        <img src="{{MEDIA_URL}}aveda-logo.png" class="img-fluid p-3 p-md-5 zoom-hover" alt="aveda brand logo">
       </a>
     </div>
     <div class="col">
       <a href="{% url 'products' %}?q=Bumble+and+Bumble" class="d-flex justify-content-around align-items-center border border-2 rounded h-100">    
-        <img src="{{MEDIA_URL}}/bumble-bumble-logo.webp" class="img-fluid p-3 p-md-5 zoom-hover" alt="bumble and bumble brand logo">
+        <img src="{{MEDIA_URL}}bumble-bumble-logo.webp" class="img-fluid p-3 p-md-5 zoom-hover" alt="bumble and bumble brand logo">
       </a>
     </div>
     <div class="col">
       <a href="{% url 'products' %}?q=Color+Wow" class="d-flex justify-content-around align-items-center border border-2 rounded h-100">    
-        <img src="{{MEDIA_URL}}/color-wow-logo.webp" class="img-fluid p-3 p-md-5 zoom-hover" alt="color wow brand logo">
+        <img src="{{MEDIA_URL}}color-wow-logo.webp" class="img-fluid p-3 p-md-5 zoom-hover" alt="color wow brand logo">
       </a>
     </div>
     <div class="col">
       <a href="{% url 'products' %}?q=Moroccanoil" class="d-flex justify-content-around align-items-center border border-2 rounded h-100">    
-        <img src="{{MEDIA_URL}}/moroccanoil-logo.png" class="img-fluid p-3 p-md-5 zoom-hover" alt="moroccanoil brand logo">
+        <img src="{{MEDIA_URL}}moroccanoil-logo.png" class="img-fluid p-3 p-md-5 zoom-hover" alt="moroccanoil brand logo">
       </a>
     </div>
   </div>

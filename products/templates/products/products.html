@@ -64,7 +64,7 @@
               {% if product.image %}
                 <img src="{{ product.image.url }}" class="card-img-top" alt="image for {{ product.name }}">
               {% else %}
-                <img src="{{ MEDIA_URL }}/placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
+                <img src="{{ MEDIA_URL }}placeholder.webp" class="card-img-top" alt="image for {{ product.name }}">
               {% endif %}
               {% if product.available %}
                 {% if product.sale_price %}

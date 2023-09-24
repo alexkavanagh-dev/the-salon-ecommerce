@@ -90,7 +90,7 @@
                                 {% if item.product.image %}
                                     <img src="{{ item.product.image.url }}" alt="{{ item.product.name }} image" class="w-25 rounded border float-start me-2 cart-item-image">
                                 {% else %}
-                                    <img src="{{ MEDIA_URL }}/placeholder.webp" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
+                                    <img src="{{ MEDIA_URL }}placeholder.webp" alt="{{ item.product.name }} image" class="img-fluid rounded border float-start me-2 cart-item-image">
                                 {% endif %}
                                 <a href="{% url 'product_detail' item.product.id %}" class="link-dark my-0 fw-semibold">{{ item.product.name }}</a>
                                 <a href="{% url 'wishlist_product' item.product.id %}" class="btn btn-sm btn-danger float-end"><i class="fa-solid fa-xmark"></i></a>
