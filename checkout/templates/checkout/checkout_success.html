@@ -18,6 +18,7 @@
         </div>
     </div>
 
+    <!-- Display order information -->
     <div class="row">
         <div class="col-12 col-lg-7">
             <div class="p-2 border rounded">
@@ -196,6 +197,7 @@
         </div>
     </div>
 
+    <!-- Back to profile or products page -->
     <div class="row">
         <div class="col-12 col-lg-7 text-end">
             {% if from_profile %}
@@ -204,7 +206,7 @@
                 </a>
             {% else %}
                 <a href="{% url 'products' %}" class="btn btn-brand rounded my-2">
-                    <span class="text-uppercase">Check out our featured products!</span>
+                    <span class="text-uppercase">Check out our other products!</span>
                 </a>
             {% endif %}
         </div>

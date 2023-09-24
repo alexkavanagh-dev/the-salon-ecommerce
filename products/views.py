@@ -9,8 +9,9 @@ from .forms import ReviewForm, ProductForm
 
 
 def all_products(request):
-    """ A view to show all products, including search queries with
-        pagination
+    """ 
+    A view to show all products, including search queries with
+    pagination
     """
 
     products = Product.objects.all()

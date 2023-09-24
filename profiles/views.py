@@ -42,6 +42,8 @@ def profile(request):
 
 
 def order_history(request, order_number):
+    """ Display a past order confirmation """
+
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (
@@ -60,6 +62,10 @@ def order_history(request, order_number):
 
 @login_required
 def wishlist_product(request, product_id):
+    """
+    Add a product to a users wishlist or remove it if the product is
+    already in the wishlist
+    """
 
     user = get_object_or_404(User, pk=request.user.id)
     product = get_object_or_404(Product, pk=product_id)

@@ -15,7 +15,7 @@
             <h5>Edit product</h5>
             <hr>
 
-            <!-- Form for adding new product -->
+            <!-- Form for editing a product -->
             <form class="my-3" method="POST" enctype="multipart/form-data">
                 {{ product_form | crispy }}
                 {% csrf_token %}
