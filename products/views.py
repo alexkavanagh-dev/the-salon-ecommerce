@@ -9,7 +9,7 @@ from .forms import ReviewForm, ProductForm
 
 
 def all_products(request):
-    """ 
+    """
     A view to show all products, including search queries with
     pagination
     """
@@ -142,7 +142,7 @@ def add_product(request):
             if product_form.is_valid():
                 new_product = product_form.save(commit=False)
                 new_product.save()
-                messages.success(request, 'New product was added successfully!')
+                messages.success(request, 'New product added successfully!')
                 return redirect(reverse('add_product'))
             else:
                 messages.error(request, 'Please check that the form has been '
@@ -150,7 +150,8 @@ def add_product(request):
         else:
             product_form = ProductForm()
 
-        return render(request, 'products/add_product.html', {"product_form": product_form})
+        return render(request, 'products/add_product.html',
+                      {"product_form": product_form})
     else:
         messages.error(request, 'Sorry, you do not have permission to perform '
                                 'that action.')
@@ -168,7 +169,8 @@ def edit_product(request, product_id):
 
         if request.method == 'POST':
             product_form = \
-                ProductForm(data=request.POST, files=request.FILES, instance=product)
+                ProductForm(data=request.POST, files=request.FILES,
+                            instance=product)
 
             if product_form.is_valid():
                 edited_product = product_form.save(commit=False)

@@ -22,19 +22,23 @@ def add_to_cart(request, item_id):
 
             if cart[item_id] > 99:
                 cart[item_id] = 99
-                messages.success(request, f'Max quantity (99) of {product.name} added to your cart!')
+                messages.success(request, f'Max quantity (99) of'
+                                          '{product.name} added to your cart!')
             else:
-                messages.success(request, f'{product.name} was updated in your cart!')
+                messages.success(request, f'{product.name} was updated in your'
+                                          'cart!')
 
         else:
             cart[item_id] = quantity
-            messages.success(request, f'{product.name} was added to your cart!')
+            messages.success(request, f'{product.name} was added to your'
+                                      'cart!')
 
         request.session['cart'] = cart
         return redirect(redirect_url)
 
     else:
-        messages.error(request, f'Sorry, something went wrong and that could not be added to your cart')
+        messages.error(request, f'Sorry, something went wrong and that could'
+                                'not be added to your cart')
         return redirect(reverse('view_cart'))
 
 
@@ -52,7 +56,8 @@ def update_cart(request, item_id):
         request.session['cart'] = cart
         return redirect(redirect_url)
     else:
-        messages.error(request, f'Sorry, something went wrong and your cart could not be updated')
+        messages.error(request, f'Sorry, something went wrong and your cart'
+                                'could not be updated')
         return redirect(reverse('view_cart'))
 
 
@@ -66,6 +71,7 @@ def remove_from_cart(request, item_id):
         cart.pop(item_id)
         messages.info(request, f'{product.name} was removed from your cart!')
     else:
-        messages.error(request, f'Sorry, something went wrong and that item could not be removed from your cart')
+        messages.error(request, f'Sorry, something went wrong and that item'
+                                'could not be removed from your cart')
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
