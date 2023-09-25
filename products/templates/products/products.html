@@ -58,7 +58,7 @@
 
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
       {% for product in page_obj %}
-        <div id="product-card" class="col my-3 text-center">
+        <div class="col product-card my-3 text-center">
           <div class="card h-100">
             <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
               {% if product.image %}
@@ -82,8 +82,8 @@
                 <h5 class="card-text fw-bold">{{ product.brand }}</h5>
               </div>
               <div>
-                <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
-                  <p class="pb-4" aria-label="Go to product detail page">{{ product.name }}</p>
+                <a href="{% url 'product_detail' product.id %}" class="card-link text-dark aria-label="Go to product detail page"">
+                  <p class="pb-4">{{ product.name }}</p>
                 </a>
                 {% if product.available %}
                   {% if product.sale_price %}

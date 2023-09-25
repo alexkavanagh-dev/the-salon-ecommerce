@@ -95,7 +95,7 @@ input[type=number] {
 
 /* -------------------------------- Selling Points */
 
-#selling-point i{
+.selling-point i{
   border-bottom: 3px solid var(--brand-pink);
 }
 

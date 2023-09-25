@@ -22,7 +22,7 @@
   <h2>Featured Products from Olaplex!</h2>
   <div id="feat-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
     {% for product in feat_products %}
-    <div id="product-card" class="col my-3 text-center">
+    <div class="col product-card my-3 text-center">
       <div class="card h-100">
         <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
           {% if product.image %}
@@ -46,8 +46,8 @@
             <h5 class="card-text fw-bold">{{ product.brand }}</h5>
           </div>
           <div>
-            <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
-              <p class="pb-4" aria-label="Go to product detail page">{{ product.name }}</p>
+            <a href="{% url 'product_detail' product.id %}" class="card-link text-dark" aria-label="Go to product detail page">
+              <p class="pb-4">{{ product.name }}</p>
             </a>
             {% if product.available %}
               {% if product.sale_price %}
@@ -87,7 +87,7 @@
   <h2 class="col">Cruelty Free Products!</h2>
   <div id="cf-products-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
     {% for product in cf_products %}
-    <div id="product-card" class="col my-3 text-center">
+    <div class="col product-card my-3 text-center">
       <div class="card h-100">
         <a href="{% url 'product_detail' product.id %}" class="card-img-link" aria-label="Go to product detail page">
           {% if product.image %}
@@ -111,8 +111,8 @@
             <h5 class="card-text fw-bold">{{ product.brand }}</h5>
           </div>
           <div>
-            <a href="{% url 'product_detail' product.id %}" class="card-link text-dark">
-              <p class="pb-4" aria-label="Go to product detail page">{{ product.name }}</p>
+            <a href="{% url 'product_detail' product.id %}" class="card-link text-dark" aria-label="Go to product detail page">
+              <p class="pb-4" >{{ product.name }}</p>
             </a>
             {% if product.available %}
               {% if product.sale_price %}
@@ -140,17 +140,17 @@
 <!-- Selling Points -->
 <div class="container my-5">
   <div id="selling-points" class="row row-cols-1 row-cols-lg-3 text-center">
-    <div id="selling-point" class="col border-end mb-5 mb-lg-0">
+    <div class="col selling-point border-end mb-5 mb-lg-0">
       <i class="fa-solid fa-piggy-bank fa-2x p-2 mb-3"></i>
       <h4 class="fw-semibold">Free Shipping over &euro;60!</h4>
       <p>Get free nationwide shipping when you spend &euro;60 or more!</p>
     </div>
-    <div id="selling-point" class="col border-end mb-5 mb-lg-0">
+    <div class="col selling-point border-end mb-5 mb-lg-0">
       <i class="fa-solid fa-truck-fast fa-2x p-2 mb-3"></i>
       <h4 class="fw-semibold">Postage with An Post</h4>
       <p>We ship all our packages with An Post to give you quick, reliable shipping at great rates!</p>
     </div>
-    <div id="selling-point" class="col mb-5 mb-lg-0">
+    <div class="col selling-point mb-5 mb-lg-0">
       <i class="fa-solid fa-earth-europe fa-2x p-2 mb-3"></i>
       <h4 class="fw-semibold">Eco Friendly Packaging</h4>
       <p>We made sure all our packing materials are recyclable to do our part for the planet!</p>
