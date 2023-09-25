@@ -284,11 +284,11 @@
 
     {% block postloadjs %}
       <script type="text/javascript">
-        const toastLive = document.getElementById('liveToast')
+        const toastLive = document.getElementById('liveToast');
 
         if (toastLive) {
-          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
-            toastBootstrap.show()
+          const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive);
+            toastBootstrap.show();
         }
 
       </script>

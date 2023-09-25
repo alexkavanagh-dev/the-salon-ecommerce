@@ -9,7 +9,7 @@
         let quantityValue = parseInt(quantityField.value);
 
         if(event.key == "Enter") {
-            return
+            return;
         } else if(button.classList.contains("decrement-btn") && quantityValue >= 2) {
             quantityValue--;
         } else if(button.classList.contains("increment-btn") && quantityValue < 99) {
