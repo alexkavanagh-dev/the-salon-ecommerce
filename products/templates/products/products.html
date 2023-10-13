@@ -82,7 +82,7 @@
                 <h5 class="card-text fw-bold">{{ product.brand }}</h5>
               </div>
               <div>
-                <a href="{% url 'product_detail' product.id %}" class="card-link text-dark aria-label="Go to product detail page"">
+                <a href="{% url 'product_detail' product.id %}" class="card-link text-dark"  aria-label="Go to product detail page">
                   <p class="pb-4">{{ product.name }}</p>
                 </a>
                 {% if product.available %}
@@ -151,7 +151,7 @@
 {% block postloadjs %}
     {{ block.super }}
 
-    <script type="text/javascript">
+    <script>
 
       function changeSorting() {
         let selector = document.getElementById('sort-selector');
