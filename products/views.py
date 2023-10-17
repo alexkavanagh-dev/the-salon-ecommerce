@@ -93,6 +93,10 @@ def product_detail(request, product_id):
         product = get_object_or_404(Product, pk=product_id)
         reviews = product.reviews.order_by('created_on')
 
+        wished = False
+        if product.wishlist.filter(user=request.user.id).exists():
+            wished = True
+
         review_form = ReviewForm(data=request.POST)
 
         if review_form.is_valid():
