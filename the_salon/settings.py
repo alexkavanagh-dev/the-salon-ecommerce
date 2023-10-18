@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['8000-alexkavanag-thesaloneco-in9z5g7f1db.ws-eu102.gitpod.io',
                  '8000-alexkavanag-thesaloneco-in9z5g7f1db.ws-eu104.gitpod.io',
                  '8000-chocolate-tyrannosaurus-hbweezs36cc.ws-eu104.gitpod.io',
                  '8000-chocolate-tyrannosaurus-hbweezs36cc.ws-eu105.gitpod.io',
+                 '8000-alexkavanag-thesaloneco-bb0x8o322mf.ws-eu105.gitpod.io',
                  'the-salon-shop.herokuapp.com',
                  'the-salon-shop-de4e9ac0b4b8.herokuapp.com',
                  'localhost']

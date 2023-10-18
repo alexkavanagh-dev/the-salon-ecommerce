@@ -126,12 +126,12 @@
           <p class="d-inline fw-bold card-author">{{ review.author }}</p>
           <p class="d-inline fw-light"> left a review:</p>
           {% if review.rating is not None %}
-          <p class="mt-2">{{ review.rating }}/5 <i class="fa-solid fa-star"></i></p>
+            <p class="mt-2">{{ review.rating }}/5 <i class="fa-solid fa-star"></i></p>
           {% else %}
-          <p class="mt-2">No rating</p>
+            <p class="mt-2">No rating</p>
           {% endif %}
           <hr class="text-muted">
-          <p >{{ review.body | linebreaks }}</p>
+          <p>{{ review.body }}</p>
         </div>
         <hr>
         <!-- Show message if there are no reviews yet -->
