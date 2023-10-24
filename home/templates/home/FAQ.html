@@ -27,6 +27,12 @@
         </div>
         {% endfor %}
     </div>
+
+    {% if request.user.is_superuser %}
+        <div class="w-100 text-center my-5">
+            <a href="{% url 'add_FAQ' %}" class="btn btn-brand">Add Frequently Asked Question</a>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}
