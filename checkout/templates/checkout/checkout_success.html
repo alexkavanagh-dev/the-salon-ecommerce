@@ -63,11 +63,10 @@
                         </p>
                     </div>
                     <div class="col-12 col-md-4 text-md-end">
-                        <p class="small mb-0">{{ item.quantity }} @ &euro;{{ item.product.price }} each</p>
                         {% if item.product.sale_price %}
-                        <p class="small mb-0">{{ item.quantity }} @ &euro;{{ item.product.sale_price }} each</p>
+                            <p class="small mb-0">{{ item.quantity }} @ &euro;{{ item.product.sale_price }} each</p>
                         {% else %} 
-                        <p class="small mb-0">{{ item.quantity }} @ &euro;{{ item.product.price }} each</p>
+                            <p class="small mb-0">{{ item.quantity }} @ &euro;{{ item.product.price }} each</p>
                         {% endif %}
                     </div>
                 </div>
