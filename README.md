@@ -85,6 +85,19 @@ This project contains working Stripe functionality so when placing test orders u
 - There is a section giving the business physical address, phone number and opening hours with a link to check out their facebook page below. 
 - The last section of the footer is a newsletter sign up run through mail chimp that simply requires a users email address to sign up for a newsletter from the business to keep up with offers and news. 
 
+### Customer Testimonials
+
+- Customers can leave feedback for the shop as a whole through testimonials. 
+- Users can access the form to leave a testimonial when signed in through the account dropdown in the navigation menu or through the link under the testimonial section on the homepage.
+- 3 testimonials are shown at the end of the homepage in order of most recently submitted and show when they were submitted to give users up to date feedback on the store. 
+- Testimonials have to be approved by an admin in the admin panel before it will show up on the homepage. 
+
+### FAQ
+
+- There is a link to an FAQ page in the footer menu which is a page for frequently asked questions for users. 
+- The FAQ model is used to store question and answer pairs.
+- FAQs can be managed through the admin panel and easily added by an admin user through the link on the FAQ page. 
+
 ### Newsletter
 
 A user can sign up with their email address through a signup form in the footer for a newsletter from the business. This can be goodo for users to keep up with news, sales, exclusive offers and more. It is also great for a business to have a simple newsletter signup as it gives them an easy, quick way to interact with customers who are definitely interested in hearing more from them and can drive customers to return to the site and make more purchases. The newsletter is run through mailchimps free tier which is a great starting point for small businesses getting themselves out there without wanting to invest too much. 
