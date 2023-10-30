@@ -159,6 +159,8 @@
                     {% endif %}
                   <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
                   <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'add_testimonial' %}">Submit Testimonial</a></li>
+                  <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                   {% else %}
                   <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>

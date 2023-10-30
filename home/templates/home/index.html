@@ -184,4 +184,23 @@
   </div>
 </div>
 
+<!-- Testimonials -->
+<div class="container my-5">
+  <h2 class="col mb-3">Testimonials from our customers!</h2>
+  <div id="testimonials" class="row row-cols-1 row-cols-lg-3 text-center">
+    {% for testimonial in approved_testimonials %}
+      <div class="col testimonial py-4 my-3 mb-lg-0 {% if forloop.counter|divisibleby:2 %}border-start border-end{% endif %}">
+        <p class="fst-italic">"{{ testimonial.body }}"</p>
+        <p></p>
+        <p><span class="fw-semibold">{{ testimonial.author }}</span> - {{ testimonial.created_on|date:"M, Y" }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  {% if user.is_authenticated %}
+    <div class="text-center">
+      <a href="{% url 'add_testimonial' %}" class="btn btn-lg btn-brand mt-3">Submit your own testimonial</a>
+    </div>
+  {% endif %}
+</div>
+
 {% endblock %}
